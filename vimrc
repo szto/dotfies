@@ -58,6 +58,16 @@ Plugin 'tpope/vim-surround'
 "Hard Mode 
 Plugin 'takac/vim-hardtime'
 
+"Jedi
+Plugin 'davidhalter/jedi-vim'
+
+"Neosnippet
+Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+
+"vim-airline
+Plugin 'vim-airline/vim-airline'
 
 """vimrc
 set t_Co=256          " enables 256 colors
@@ -114,3 +124,31 @@ set foldmethod=indent
 set foldlevel=99
 
 map <F3> :NERDTreeToggle<CR>
+
+""""""""""""""""""""""""""""""""""
+" Disable arrow keys
+""""""""""""""""""""""""""""""""""
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+"""""""""""""""""""""""""""""""""""""""""
+" copy to OS clipboard
+"""""""""""""""""""""""""""""""""""""""""
+" Set clipboard t0 unnamedplus only if it's not Mac OS X
+set clipboard=unnamed
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Linux\n"
+    set clipboard=unnamedplus
+  endif
+else
+    set clipboard=unnamed
+endif
+
+vnoremap <C-c> "*y
+vnoremap <C-p> "*p
+vmap ,c "+y
+vmap ,p "*p
+
