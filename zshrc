@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="$HOME/miniconda3/bin:$HOME/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/szto/.oh-my-zsh"
@@ -8,7 +8,7 @@ export ZSH="/Users/szto/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,7 +71,17 @@ plugins=(git
 	gnu-utils
 	zsh-syntax-highlighting
 	history-substring-search
+  zsh-autosuggestions
 	colored-man-pages
+  history
+  web-search
+  dirpersist
+  dircycle
+  vundle
+  fasd
+  fzf
+  tmux
+  tmuxinator
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -107,3 +117,33 @@ source $ZSH/oh-my-zsh.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Pure prompt Theme
+autoload -U promptinit; promptinit
+
+# Alias
+alias tm ="tmux"
+alias mux="tmuxinator"
+alias rs="python manage.py runserver"
+alias mm="python manage.py makemigrations"
+alias mg="python manage.py migrate"
+alias c="clear"
+
+# Vim Keybind
+#bindkey -v
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/szto/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/szto/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/szto/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/szto/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
