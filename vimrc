@@ -176,18 +176,19 @@ set smartcase
 set incsearch
 set hlsearch
 
-""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""For python""""""""""""""""""""""
-filetype plugin indent on
-" show existing tab with 4 spaces width
-set tabstop=4
-set softtabstop=4
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
-" On pressing tab, insert 4 spaces
-set expandtab
-""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""For python""""""""""""""""""""""
+"filetype plugin indent on
+"" show existing tab with 4 spaces width
+"set tabstop=4
+"set softtabstop=4
+"" when indenting with '>', use 4 spaces width
+"set shiftwidth=4
+"" On pressing tab, insert 4 spaces
+"set expandtab
+"""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""
+Plugin 'Vimjas/vim-python-pep8-indent'
 
 " For Python
 au BufNewFile,BufRead *.py
@@ -385,6 +386,7 @@ nmap <leader>bl :ls<CR>
 
 
 "" https://agvim.com/2017/09/05/vim-plugins-100/
+Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'gregsexton/gitv'
 Plugin 'tpope/vim-eunuch'
@@ -442,13 +444,6 @@ let g:ctrlproj_configuration_path = '~/.vim/.ctrlproj'
 Plugin 'Quich-Filter'
 nnoremap ,fi :call FilteringNew().addToParameter('alt', @/).run()
 nnoremap ,g :call FilteringGetForSource().return()
-Plugin 'terryma/vim-multiple-cursors'
-
-""""""""
-let g:multi_cursor_next_key=''
-let g:multi_cursor_prev_key=''
-let g:multi_cursor_skip_key=''
-let g:multi_cursor_quit_key=''
 
 Plugin 'mattn/emmet-vim'
 Plugin 'honza/vim-snippets'
@@ -495,6 +490,7 @@ nmap  ,fv :cd ~/.vim/bundle/:LustyFilesystemExplorer
 nmap  ,fr :Rooter:LustyFilesystemExplorer
 
 Plugin 'LustyJuggler'
+Plugin 'tpope/vim-commentary'
 
 """LUSTYJUGGLER"""
 nmap  ,d :LustyJuggler
@@ -502,3 +498,55 @@ nmap  ,d :LustyJuggler
 ""MARKED"
 "let g:marked_app = "Marked"
 "let g:marked_filetypes = ["markdown", "mkd", "ghmarkdown", "vimwiki"]
+"
+" Automatically closing braces
+inoremap {<CR> {<CR>}<Esc>ko<tab>
+inoremap [<CR> [<CR>]<Esc>ko<tab>
+inoremap (<CR> (<CR>)<Esc>ko<tab>
+
+Plugin 'ekalinin/dockerfile.vim'
+Plugin 'avakhov/vim-yaml'
+
+noremap <Leader>s :update<CR>
+
+"Ag mode"
+Plugin 'rking/ag.vim'
+
+"Nerdtree open"
+function! StartUp()
+    if 0 == argc()
+        NERDTree
+    end
+endfunction
+
+autocmd VimEnter * call StartUp()
+
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+
+"""Vim Instant Markdown"""
+Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
+
+Plugin 'dense-analysis/ale'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
+let g:ale_linters = {
+\   'python': ['flake8', 'pylint'],
+\   'javascript': ['eslint'],
+\   'vue': ['eslint']
+\}
+
+let g:ale_fixers = {
+\    'javascript': ['eslint'],
+\    'vue': ['eslint'],
+\    'scss': ['prettier']
+\}
+let g:ale_fix_on_save = 1
+Plugin 'alvan/vim-closetag'
+
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.js'
+
+
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
