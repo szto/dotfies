@@ -40,10 +40,11 @@ set foldlevelstart=10   " start with fold level of 1
 nnoremap j gj
 nnoremap k gk
 nnoremap gV `[v`]
-autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python' shellescape(@%, 1)<cr>
+autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
 " }}}
 " Leader Shortcuts {{{
 let mapleader=","
+nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>m :silent make\|redraw!\|cw<CR>
 nnoremap <leader>h :A<CR>
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
@@ -115,6 +116,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
 Plug 'tomasiser/vim-code-dark'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'chrisbra/vim-commentary'
+Plug 'scrooloose/nerdtree'
+Plug 'SirVer/ultisnips'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'rking/ag.vim'
 call plug#end()
 " }}}
 " airline {{{
@@ -168,6 +174,7 @@ endfunc
 
 function! <SID>BuildFile()
     let ext = expand("%:e")
+k
     if(ext == "go") 
         :GoBuild
     endif
@@ -180,4 +187,16 @@ set termguicolors
 " }}}
 "
 
-vim:foldmethod=marker:foldlevel=1
+" UltiSnips {{{
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['UltiSnips']
+" Silver Search (Ag) }}}
+
+" 
+" }}}
+"
+"vim:foldmethod=marker:foldlevel=0
