@@ -55,7 +55,7 @@ Plugin 'vim-scripts/ScrollColors'
 "Surround
 Plugin 'tpope/vim-surround'
 
-"Hard Mode 
+"Hard Mode
 Plugin 'takac/vim-hardtime'
 
 "Jedi
@@ -73,6 +73,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
 
+"" test
 ""fzf
 "Plug '/usr/local/opt/fzf'
 "Plug 'junegunn/fzf.vim'
