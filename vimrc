@@ -20,6 +20,7 @@ set undofile
 set incsearch
 set termguicolors
 set scrolloff=8
+set clipboard+=unnamedplus
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -31,7 +32,7 @@ set updatetime=50
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-set colorcolumn=80
+set colorcolumn=120
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
@@ -55,7 +56,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'flazz/vim-colorschemes'
 Plug '/home/mpaulson/personal/vim-be-good'
 Plug 'nvie/vim-flake8'
-Plug 'ambv/black'
+Plug 'SirVer/ultisnips'
+" Plug 'ambv/black'
+Plug 'psf/black', { 'tag': '*' }
+" Plug 'a-vrma/black-nvim', {'do': ':UpdateRemotePlugins'}
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -103,6 +109,8 @@ nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <C-p> :GFiles<CR>
+nnoremap <C-l> :Lines<CR>
+nnoremap <C-k> :Goyo<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
@@ -114,6 +122,9 @@ vnoremap K :m '<-2<CR>gv=gv
 " Vim with me
 nnoremap <leader>vwm :colorscheme gruvbox<bar>:set background=dark<CR>
 nmap <leader>vtm :highlight Pmenu ctermbg=gray guibg=gray
+nmap <F8> :!python %<cr>
+nnoremap <leader>r :w \| !python %<cr>
+
 
 vnoremap X "_d
 inoremap <C-c> <esc>
@@ -147,6 +158,7 @@ nnoremap <leader>cr :CocRestart
 map <leader>vm :vsp $MYVIMRC<CR>
 map <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>w :w!<CR>
+au FileType python nnoremap <buffer> <F9> :silent !black -S %<CR><CR>
 
 " Sweet Sweet FuGITive
 nmap <leader>gh :diffget //3<CR>
@@ -160,3 +172,20 @@ fun! TrimWhitespace()
 endfun
 
 autocmd BufWritePre * :call TrimWhitespace()
+
+" Black
+" autocmd BufWritePre *.py execute ':Black'
+let g:python3_host_prog = $HOME . '/.local/venv/nvim/bin/python'
+
+" Flake8
+" let g:flake8_cmd="/your/path/of/flake8"
+" call flake8#Flake8UnplaceMarkers()
+
+" Utisnip
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['UltiSnips']
+
